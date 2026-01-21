@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corazón para Ti</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #222 0%, #000 70%);
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Corazón principal (responsive) */
+.heart {
+  width: min(120px, 30vw);
+  height: min(120px, 30vw);
+  background: #e0002a;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: heartbeat 1.2s infinite;
+  box-shadow: 0 0 30px rgba(224, 0, 42, 0.6);
+  z-index: 2;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #e0002a;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -50%;
+  left: 0;
+}
+
+.heart::after {
+  left: 50%;
+  top: 0;
+}
+
+/* Latido realista */
+@keyframes heartbeat {
+  0%   { transform: rotate(-45deg) scale(1); }
+  10%  { transform: rotate(-45deg) scale(1.15); }
+  20%  { transform: rotate(-45deg) scale(1); }
+  30%  { transform: rotate(-45deg) scale(1.25); }
+  45%  { transform: rotate(-45deg) scale(1); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* Texto optimizado para móvil */
+.texto {
+  margin-top: 30px;
+  max-width: 90%;
+  font-size: clamp(16px, 4.5vw, 20px);
+  line-height: 1.6;
+  text-shadow: 0 0 10px rgba(255, 0, 80, 0.6);
+  z-index: 2;
+}
+
+/* Corazones cayendo */
+.falling-heart {
+  position: absolute;
+  top: -10%;
+  color: #ff2f6d;
+  animation: fall linear infinite;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Script lluvia de corazones (ligero para celular) -->
+<script>
+const cantidad = window.innerWidth < 600 ? 20 : 35;
+
+for (let i = 0; i < cantidad; i++) {
+  const heart = document.createElement("div");
+  heart.className = "falling-heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (14 + Math.random() * 18) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+  heart.style.animationDelay = Math.random() * 5 + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+<div class="heart"></div>
+
+<div class="texto">
+  Eres la mejor chica del mundo, te quiero 💕  
+  <br><br>
+  Y sabes algo… tú me estás robando mi corazón  
+  cada día que pasa y sabes que eres lo mas importante
+  que tengo en mi vida 
+  No sé si el destino fue quien nos cruzó,
+  o si fue la suerte disfrazada de casualidad,
+  pero desde que tu mirada me encontró,
+  mi mundo aprendió una nueva forma de brillar❤️
+</div>
+
+</body>
+</html>
